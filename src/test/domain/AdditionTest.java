@@ -7,18 +7,19 @@ public class AdditionTest {
     @Test
     void testAdditionPositiveNumbers() {
         Addition add = new Addition();
-        assertEquals(5.0, add.execute(2, 3));
+        assertEquals(7.0, add.execute(3, 4));
     }
 
     @Test
     void testAdditionNegativeNumbers() {
         Addition add = new Addition();
-        assertEquals(-1.0, add.execute(2, -3));
+        assertEquals(-7.0, add.execute(-3, -4));
     }
 
     @Test
     void testAdditionWithZero() {
         Addition add = new Addition();
-        assertEquals(2.0, add.execute(2, 0));
+        assertEquals(3.0, add.execute(3, 0));
+        assertEquals(0.0, add.execute(0, 0));
     }
 }
