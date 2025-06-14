@@ -168,14 +168,22 @@ public class CalculatorUI extends JFrame {
     }
   }
 
+  private String formatNumber(double value) {
+    if (value == (long) value) {
+      return String.format("%d", (long) value);
+    } else {
+      return String.valueOf(value);
+    }
+  }
+
   private void pressEquals() {
     if (!operator.isEmpty() && !current.isEmpty()) {
       double secondOperand = Double.parseDouble(current);
       try {
         double result = calculator.calculate(operator, firstOperand, secondOperand);
-        String entry = firstOperand + " " + operator + " " + secondOperand + " = " + result;
+        String entry = formatNumber(firstOperand) + " " + operator + " " + formatNumber(secondOperand) + " = " + formatNumber(result);
         historyManager.add(entry);
-        current = String.valueOf(result);
+        current = formatNumber(result);
         operator = "";
         resetDisplay = true;
         updateDisplay();
@@ -205,7 +213,7 @@ public class CalculatorUI extends JFrame {
 
   private void updateDisplay() {
     if (!operator.isEmpty() && resetDisplay) {
-      display.setText(firstOperand + " " + operator);
+      display.setText(formatNumber(firstOperand) + " " + operator);
     } else {
       display.setText(current);
     }
