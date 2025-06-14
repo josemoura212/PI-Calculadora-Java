@@ -7,18 +7,19 @@ public class SubtractionTest {
     @Test
     void testSubtractionPositiveNumbers() {
         Subtraction sub = new Subtraction();
-        assertEquals(1.0, sub.execute(3, 2));
+        assertEquals(1.0, sub.execute(5, 4));
     }
 
     @Test
-    void testSubtractionNegativeResult() {
+    void testSubtractionNegativeNumbers() {
         Subtraction sub = new Subtraction();
-        assertEquals(-1.0, sub.execute(2, 3));
+        assertEquals(1.0, sub.execute(-3, -4));
     }
 
     @Test
     void testSubtractionWithZero() {
         Subtraction sub = new Subtraction();
-        assertEquals(2.0, sub.execute(2, 0));
+        assertEquals(3.0, sub.execute(3, 0));
+        assertEquals(-3.0, sub.execute(0, 3));
     }
 }
