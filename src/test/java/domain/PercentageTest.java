@@ -7,7 +7,7 @@ public class PercentageTest {
     @Test
     void testPercentageNormal() {
         Percentage perc = new Percentage();
-        assertEquals(2.0, perc.execute(20, 10)); // 10% de 20 = 2
+        assertEquals(2.0, perc.execute(20, 10));
     }
 
     @Test
@@ -19,6 +19,6 @@ public class PercentageTest {
     @Test
     void testPercentageNegative() {
         Percentage perc = new Percentage();
-        assertEquals(-2.0, perc.execute(20, -10)); // -10% de 20 = -2
+        assertEquals(-2.0, perc.execute(20, -10));
     }
 }

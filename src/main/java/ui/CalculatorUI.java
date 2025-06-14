@@ -44,17 +44,16 @@ public class CalculatorUI extends JFrame {
         "4", "5", "6", "×",
         "1", "2", "3", "-",
         "0", ".", "%", "+",
-        "C", "⌫", "=", "Hist"
+        "C", "←", "=", "Hist"
     };
     for (String text : buttons) {
       JButton btn = new JButton(text);
-      btn.setFont(new Font("SansSerif", Font.BOLD, 22));
+      btn.setFont(new Font("Segoe UI", Font.BOLD, 18));
       btn.addActionListener(new ButtonClickListener());
       panel.add(btn);
     }
     add(panel, BorderLayout.CENTER);
 
-    // Suporte ao teclado
     addKeyListener(new KeyAdapter() {
       @Override
       public void keyPressed(KeyEvent e) {
@@ -69,7 +68,6 @@ public class CalculatorUI extends JFrame {
         handleKey(e);
       }
     });
-    // Garante foco ao clicar em qualquer lugar
     addWindowFocusListener(new java.awt.event.WindowAdapter() {
       public void windowGainedFocus(java.awt.event.WindowEvent e) {
         requestFocusInWindow();
@@ -145,7 +143,6 @@ public class CalculatorUI extends JFrame {
         showHistory();
         break;
     }
-    // Suporte para % também pelo teclado
     if (c == '%')
       pressOperator("%");
   }
@@ -181,7 +178,8 @@ public class CalculatorUI extends JFrame {
       double secondOperand = Double.parseDouble(current);
       try {
         double result = calculator.calculate(operator, firstOperand, secondOperand);
-        String entry = formatNumber(firstOperand) + " " + operator + " " + formatNumber(secondOperand) + " = " + formatNumber(result);
+        String entry = formatNumber(firstOperand) + " " + operator + " " + formatNumber(secondOperand) + " = "
+            + formatNumber(result);
         historyManager.add(entry);
         current = formatNumber(result);
         operator = "";
@@ -227,7 +225,7 @@ public class CalculatorUI extends JFrame {
         case "C":
           pressClear();
           break;
-        case "⌫":
+        case "←":
           pressBackspace();
           break;
         case "+":
@@ -242,7 +240,7 @@ public class CalculatorUI extends JFrame {
           break;
         case "Hist":
           showHistory();
-          requestFocusInWindow(); // Garante foco após fechar histórico
+          requestFocusInWindow();
           break;
         default:
           appendToCurrent(cmd);
@@ -258,7 +256,7 @@ public class CalculatorUI extends JFrame {
     }
     JOptionPane.showMessageDialog(this, sb.length() > 0 ? sb.toString() : "Sem histórico", "Histórico",
         JOptionPane.INFORMATION_MESSAGE);
-    requestFocusInWindow(); // Garante foco após fechar histórico
+    requestFocusInWindow();
   }
 
   public static void main(String[] args) {
